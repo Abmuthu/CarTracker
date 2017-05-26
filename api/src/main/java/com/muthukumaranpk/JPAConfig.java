@@ -28,36 +28,36 @@ public class JPAConfig {
     private Environment env;
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean emf() {
-        LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
-        emf.setDataSource(dataSource());
-        emf.setPackagesToScan("io.egen.entity");
-        emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        emf.setJpaProperties(jpaProperties());
-        return emf;
+    public LocalContainerEntityManagerFactoryBean getEntityManagerFactoryBean() {
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactoryBean.setDataSource(getDataSource());
+        entityManagerFactoryBean.setPackagesToScan("io.egen.entity");
+        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        entityManagerFactoryBean.setJpaProperties(getJPAProperties());
+        return entityManagerFactoryBean;
     }
 
     @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource ds = new DriverManagerDataSource();
-        ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        ds.setUrl(env.getProperty("db.url"));
-        ds.setUsername(env.getProperty("db.user"));
-        ds.setPassword(env.getProperty("db.password"));
-        return ds;
+    public DataSource getDataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setUrl(env.getProperty("db.url"));
+        dataSource.setUsername(env.getProperty("db.user"));
+        dataSource.setPassword(env.getProperty("db.password"));
+        return dataSource;
     }
 
     @Bean
-    public PlatformTransactionManager txnManager(EntityManagerFactory emf) {
-        JpaTransactionManager txnMgr = new JpaTransactionManager(emf);
-        return txnMgr;
+    public PlatformTransactionManager getTransactionManager(EntityManagerFactory entityManagerFactory) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager(entityManagerFactory);
+        return transactionManager;
     }
 
-    private Properties jpaProperties() {
-        Properties props = new Properties();
-        props.put("hibernate.dialect", "org.hibernate.dialect.MySQL57Dialect");
-        props.put("hibernate.show_sql", "true");
-        props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.ddl"));
-        return props;
+    private Properties getJPAProperties() {
+        Properties properties = new Properties();
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL57Dialect");
+        properties.put("hibernate.show_sql", "true");
+        properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.ddl"));
+        return properties;
     }
 }

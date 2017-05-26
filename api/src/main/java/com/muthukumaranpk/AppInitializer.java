@@ -7,6 +7,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  * Created by muthukumaran on 5/25/17.
  */
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class[] {AppConfig.class, JPAConfig.class};
@@ -19,6 +20,6 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override
     protected String[] getServletMappings() {
-        return new String[0];
+        return new String[] {"/api/*"};
     }
 }
