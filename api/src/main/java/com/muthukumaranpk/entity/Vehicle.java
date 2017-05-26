@@ -20,7 +20,6 @@ public class Vehicle {
     private int redlineRpm;
     private int maxFuelVolume;
 
-    @Column(unique = true)
     private String lastServiceDate;
 
     public String getVin() {

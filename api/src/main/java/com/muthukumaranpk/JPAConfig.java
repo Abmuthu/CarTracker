@@ -31,7 +31,7 @@ public class JPAConfig {
     public LocalContainerEntityManagerFactoryBean getEntityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(getDataSource());
-        entityManagerFactoryBean.setPackagesToScan("io.egen.entity");
+        entityManagerFactoryBean.setPackagesToScan("com.muthukumaranpk.entity");
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         entityManagerFactoryBean.setJpaProperties(getJPAProperties());
         return entityManagerFactoryBean;
