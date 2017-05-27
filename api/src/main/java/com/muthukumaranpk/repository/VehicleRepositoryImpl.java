@@ -21,12 +21,12 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     @Override
     public Vehicle storeVehicle(Vehicle vehicle) {
         entityManager.persist(vehicle);
-        return null;
+        return vehicle;
     }
 
     @Override
     public Vehicle updateVehicle(Vehicle vehicle) {
-        return null;
+        return entityManager.merge(vehicle);
     }
 
     @Override

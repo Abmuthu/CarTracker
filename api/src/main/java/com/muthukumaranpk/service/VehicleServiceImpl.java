@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,18 +23,20 @@ public class VehicleServiceImpl implements VehicleService {
     @Transactional
     public List<Vehicle> createVehicles(List<Vehicle> vehicles) {
         System.out.println("Create vehicles called");
-        List<Vehicle> persistedVehicles = null;
+        List<Vehicle> persistedVehicles = new ArrayList<>();
 
         for (Vehicle vehicle : vehicles) {
             if(isVehiclePresent(vehicle.getVin())) {
-                vehicleRepository.storeVehicle(vehicle);
+                System.out.println("create");
+                persistedVehicles.add(vehicleRepository.storeVehicle(vehicle));
             } else {
-                // validate
-                vehicleRepository.updateVehicle(vehicle);
+                // validate service date
+                System.out.println("update");
+                persistedVehicles.add(vehicleRepository.updateVehicle(vehicle));
             }
         }
 
-        return null;
+        return persistedVehicles;
     }
 
     @Override

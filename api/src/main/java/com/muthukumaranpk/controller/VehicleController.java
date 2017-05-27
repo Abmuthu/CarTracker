@@ -4,10 +4,7 @@ import com.muthukumaranpk.entity.Vehicle;
 import com.muthukumaranpk.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -17,6 +14,7 @@ import java.util.List;
  * Created by muthukumaran on 5/25/17.
  */
 @RestController
+@CrossOrigin(origins = "http://mocker.egen.io", maxAge = 3600)
 public class VehicleController {
 
     @Autowired
@@ -27,7 +25,6 @@ public class VehicleController {
                     consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
                     produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Vehicle> createVehicles(@RequestBody List<Vehicle> vehicles) {
-//        vehicles.forEach(System.out::println);
         return vehicleService.createVehicles(vehicles);
     }
 
