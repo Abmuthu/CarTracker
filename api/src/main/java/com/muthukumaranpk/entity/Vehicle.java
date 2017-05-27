@@ -3,6 +3,8 @@ package com.muthukumaranpk.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 /**
  * Created by muthukumaran on 5/25/17.
@@ -19,9 +21,11 @@ public class Vehicle {
     private int year;
     private int redlineRpm;
     private int maxFuelVolume;
-
     private String lastServiceDate;
 
+    @OneToMany
+    private List<Reading> readings;
+    
     public String getVin() {
         return vin;
     }
@@ -76,6 +80,14 @@ public class Vehicle {
 
     public void setLastServiceDate(String lastServiceDate) {
         this.lastServiceDate = lastServiceDate;
+    }
+
+    public List<Reading> getReadings() {
+        return readings;
+    }
+
+    public void setReadings(List<Reading> readings) {
+        this.readings = readings;
     }
 
     @Override
