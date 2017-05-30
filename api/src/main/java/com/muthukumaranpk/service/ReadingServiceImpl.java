@@ -1,5 +1,6 @@
 package com.muthukumaranpk.service;
 
+import com.muthukumaranpk.entity.Alert;
 import com.muthukumaranpk.entity.Reading;
 import com.muthukumaranpk.repository.ReadingRepository;
 import com.muthukumaranpk.repository.VehicleRepository;
@@ -23,6 +24,9 @@ public class ReadingServiceImpl implements ReadingService {
     @Autowired
     private VehicleService vehicleService;
 
+    @Autowired
+    private AlertService alertService;
+
     private Set<String> timeStampSet = new HashSet<>();
 
     @Override
@@ -34,11 +38,11 @@ public class ReadingServiceImpl implements ReadingService {
 
                 System.out.println("Duplicate!!! " + reading);
             } else {
+                Alert alert = alertService.createAlert(reading, vehicleService.getVehicle(reading.getVin()));
+                System.out.println(alert);
                 timeStampSet.add(reading.getTimestamp());
                 returnedReading = readingRepository.storeReading(reading);
             }
-            // if already visited - if in set : dont do anything
-            // if not already vising - if not in set :
         } else {
             // throw exception no associated vehicle
         }

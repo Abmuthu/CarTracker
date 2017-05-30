@@ -43,4 +43,9 @@ public class VehicleServiceImpl implements VehicleService {
     public boolean isVehiclePresent(String vin) {
         return vehicleRepository.findVehicle(vin) != null;
     }
+
+    @Override
+    public Vehicle getVehicle(String vin) {
+        return vehicleRepository.findVehicle(vin);
+    }
 }

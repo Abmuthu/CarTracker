@@ -33,4 +33,10 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     public Vehicle findVehicle(String vin) {
         return entityManager.find(Vehicle.class, vin);
     }
+
+    @Override
+    public Vehicle findAll() {
+        // TODO: pass appropriate query and return list
+        return null;
+    }
 }
