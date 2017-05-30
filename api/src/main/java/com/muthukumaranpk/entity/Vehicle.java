@@ -1,9 +1,6 @@
 package com.muthukumaranpk.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,14 +12,6 @@ import java.util.UUID;
 public class Vehicle {
 
     @Id
-    @Column(columnDefinition = "varchar(36)")
-    private String id;
-
-    public Vehicle() {
-        this.id = UUID.randomUUID()
-                .toString();
-    }
-
     private String vin;
 
     private String make;
@@ -31,9 +20,6 @@ public class Vehicle {
     private int redlineRpm;
     private int maxFuelVolume;
     private String lastServiceDate;
-
-    @OneToMany
-    private List<Reading> readings;
 
     public String getVin() {
         return vin;
@@ -89,14 +75,6 @@ public class Vehicle {
 
     public void setLastServiceDate(String lastServiceDate) {
         this.lastServiceDate = lastServiceDate;
-    }
-
-    public List<Reading> getReadings() {
-        return readings;
-    }
-
-    public void setReadings(List<Reading> readings) {
-        this.readings = readings;
     }
 
     @Override

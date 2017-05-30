@@ -23,7 +23,7 @@ public class Reading {
     private double latitude;
     private double longitude;
 
-    @Column(unique = true)
+//    @Column(unique = true)
     private String timestamp;
 
     private double fuelVolume;

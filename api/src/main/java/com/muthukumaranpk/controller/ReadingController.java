@@ -26,8 +26,6 @@ public class ReadingController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Reading createVehicles(@RequestBody Reading reading) {
         return readingService.putReading(reading);
-//        System.out.println(reading.toString());
-//        return null;
     }
 
 }

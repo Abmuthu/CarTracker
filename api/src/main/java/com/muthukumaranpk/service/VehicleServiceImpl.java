@@ -26,7 +26,7 @@ public class VehicleServiceImpl implements VehicleService {
         List<Vehicle> persistedVehicles = new ArrayList<>();
 
         for (Vehicle vehicle : vehicles) {
-            if(isVehiclePresent(vehicle.getVin())) {
+            if(!isVehiclePresent(vehicle.getVin())) {
                 System.out.println("create");
                 persistedVehicles.add(vehicleRepository.storeVehicle(vehicle));
             } else {
@@ -41,6 +41,6 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public boolean isVehiclePresent(String vin) {
-        return vehicleRepository.findVehicle(vin) == null;
+        return vehicleRepository.findVehicle(vin) != null;
     }
 }
