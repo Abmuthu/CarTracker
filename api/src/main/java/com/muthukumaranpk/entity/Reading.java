@@ -1,9 +1,7 @@
 package com.muthukumaranpk.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.UUID;
 
 /**
  * Created by muthukumaran on 5/26/17.
@@ -12,6 +10,14 @@ import javax.persistence.OneToOne;
 public class Reading {
 
     @Id
+    @Column(columnDefinition = "varchar(36)")
+    private String id;
+
+    public Reading() {
+        this.id = UUID.randomUUID()
+                .toString();
+    }
+
     private String vin;
 
     private double latitude;
@@ -28,9 +34,8 @@ public class Reading {
     private boolean cruiseControlOn;
     private int engineRpm;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST})
     private Tires tires;
-
 
     public String getVin() {
         return vin;

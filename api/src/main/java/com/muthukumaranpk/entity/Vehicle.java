@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by muthukumaran on 5/25/17.
@@ -14,6 +15,14 @@ import java.util.List;
 public class Vehicle {
 
     @Id
+    @Column(columnDefinition = "varchar(36)")
+    private String id;
+
+    public Vehicle() {
+        this.id = UUID.randomUUID()
+                .toString();
+    }
+
     private String vin;
 
     private String make;
@@ -25,7 +34,7 @@ public class Vehicle {
 
     @OneToMany
     private List<Reading> readings;
-    
+
     public String getVin() {
         return vin;
     }

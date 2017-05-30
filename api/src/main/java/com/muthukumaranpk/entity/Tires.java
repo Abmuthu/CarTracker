@@ -1,28 +1,27 @@
 package com.muthukumaranpk.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.UUID;
 
 /**
  * Created by muthukumaran on 5/26/17.
  */
 @Entity
 public class Tires {
+
     @Id
-    private String vin;
+    @Column(columnDefinition = "varchar(36)")
+    private String id;
+
+    public Tires() {
+        this.id = UUID.randomUUID()
+                .toString();
+    }
 
     private int frontLeft;
     private int frontRight;
     private int rearLeft;
     private int rearRight;
-
-    public String getVin() {
-        return vin;
-    }
-
-    public void setVin(String vin) {
-        this.vin = vin;
-    }
 
     public int getFrontLeft() {
         return frontLeft;
@@ -56,6 +55,7 @@ public class Tires {
         this.rearRight = rearRight;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -66,14 +66,12 @@ public class Tires {
         if (frontLeft != tires.frontLeft) return false;
         if (frontRight != tires.frontRight) return false;
         if (rearLeft != tires.rearLeft) return false;
-        if (rearRight != tires.rearRight) return false;
-        return vin != null ? vin.equals(tires.vin) : tires.vin == null;
+        return rearRight == tires.rearRight;
     }
 
     @Override
     public int hashCode() {
-        int result = vin != null ? vin.hashCode() : 0;
-        result = 31 * result + frontLeft;
+        int result = frontLeft;
         result = 31 * result + frontRight;
         result = 31 * result + rearLeft;
         result = 31 * result + rearRight;
@@ -84,8 +82,7 @@ public class Tires {
     @Override
     public String toString() {
         return "Tires{" +
-                "vin='" + vin + '\'' +
-                ", frontLeft=" + frontLeft +
+                "frontLeft=" + frontLeft +
                 ", frontRight=" + frontRight +
                 ", rearLeft=" + rearLeft +
                 ", rearRight=" + rearRight +
