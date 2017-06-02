@@ -18,10 +18,7 @@ public class ReadingRepositoryImpl implements ReadingRepository {
 
     @Override
     public Reading storeReading(Reading reading) {
-        System.out.println("Reading test repo before!!!!!!!!!!!");
         entityManager.persist(reading);
-
-        System.out.println("Reading test repo after!!!!!!!!!!!");
         return reading;
     }
 }

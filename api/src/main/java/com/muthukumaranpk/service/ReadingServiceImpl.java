@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,7 +28,7 @@ public class ReadingServiceImpl implements ReadingService {
     @Autowired
     private AlertService alertService;
 
-    private Set<String> timeStampSet = new HashSet<>();
+    private Set<Date> timeStampSet = new HashSet<>();
 
     @Override
     @Transactional
@@ -35,7 +36,6 @@ public class ReadingServiceImpl implements ReadingService {
         Reading returnedReading = null;
         if (vehicleService.isVehiclePresent(reading.getVin())) {
             if (timeStampSet.contains(reading.getTimestamp())) {
-
                 System.out.println("Duplicate!!! " + reading);
             } else {
                 Alert alert = alertService.createAlert(reading, vehicleService.getVehicle(reading.getVin()));

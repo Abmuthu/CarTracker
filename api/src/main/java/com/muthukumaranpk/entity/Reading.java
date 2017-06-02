@@ -1,6 +1,9 @@
 package com.muthukumaranpk.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -22,9 +25,9 @@ public class Reading {
 
     private double latitude;
     private double longitude;
-
-//    @Column(unique = true)
-    private String timestamp;
+    
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    private Date timestamp;
 
     private double fuelVolume;
     private int speed;
@@ -61,11 +64,11 @@ public class Reading {
         this.longitude = longitude;
     }
 
-    public String getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -176,14 +179,13 @@ public class Reading {
         return result;
     }
 
-
     @Override
     public String toString() {
         return "Reading{" +
                 "vin='" + vin + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", timestamp='" + timestamp + '\'' +
+                ", timestamp=" + timestamp +
                 ", fuelVolume=" + fuelVolume +
                 ", speed=" + speed +
                 ", engineHp=" + engineHp +

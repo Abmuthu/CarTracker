@@ -22,16 +22,12 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     @Transactional
     public List<Vehicle> createVehicles(List<Vehicle> vehicles) {
-        System.out.println("Create vehicles called");
         List<Vehicle> persistedVehicles = new ArrayList<>();
 
         for (Vehicle vehicle : vehicles) {
             if(!isVehiclePresent(vehicle.getVin())) {
-                System.out.println("create");
                 persistedVehicles.add(vehicleRepository.storeVehicle(vehicle));
             } else {
-                // validate service date
-                System.out.println("update");
                 persistedVehicles.add(vehicleRepository.updateVehicle(vehicle));
             }
         }
