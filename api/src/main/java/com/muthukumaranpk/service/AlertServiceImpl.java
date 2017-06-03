@@ -19,36 +19,40 @@ public class AlertServiceImpl implements AlertService {
     private AlertRepository alertRepository;
 
     @Override
-    public Alert createAlert(Reading reading, Vehicle vehicle) {
-        Alert alert = new Alert();
-        alert.setVin(reading.getVin());
-        Alert returnedAlert = null;
+    public void createAlert(Reading reading, Vehicle vehicle) {
+        Alert alert;
 
         if (reading.getEngineRpm() > vehicle.getRedlineRpm()) {
+            alert = new Alert();
+            alert.setVin(reading.getVin());
             alert.setAlertPriority(AlertPriority.HIGH);
             alert.setAlertMessage("Engine rpm too high!");
-            returnedAlert = alertRepository.storeAlert(alert);
+            alertRepository.storeAlert(alert);
         }
 
         if (reading.getFuelVolume() < (0.1 * vehicle.getMaxFuelVolume())) {
+            alert = new Alert();
+            alert.setVin(reading.getVin());
             alert.setAlertPriority(AlertPriority.MEDIUM);
             alert.setAlertMessage("Low Fuel");
-            returnedAlert = alertRepository.storeAlert(alert);
+            alertRepository.storeAlert(alert);
         }
 
         if (isTireFaulty(reading.getTires())) {
+            alert = new Alert();
+            alert.setVin(reading.getVin());
             alert.setAlertPriority(AlertPriority.LOW);
             alert.setAlertMessage("Flat Tire!");
-            returnedAlert = alertRepository.storeAlert(alert);
+            alertRepository.storeAlert(alert);
         }
 
         if (reading.isEngineCoolantLow() || reading.isCheckEngineLightOn()) {
+            alert = new Alert();
+            alert.setVin(reading.getVin());
             alert.setAlertPriority(AlertPriority.LOW);
             alert.setAlertMessage("Check engine coolant and light!");
-            returnedAlert = alertRepository.storeAlert(alert);
+            alertRepository.storeAlert(alert);
         }
-
-        return returnedAlert;
     }
 
     @Override

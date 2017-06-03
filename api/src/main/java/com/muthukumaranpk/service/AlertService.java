@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface AlertService {
 
-    Alert createAlert(Reading reading, Vehicle vehicle);
+    void createAlert(Reading reading, Vehicle vehicle);
 
     List<Alert> getHighPriorityAlerts();
 }

@@ -38,8 +38,7 @@ public class ReadingServiceImpl implements ReadingService {
             if (timeStampSet.contains(reading.getTimestamp())) {
                 System.out.println("Duplicate!!! " + reading);
             } else {
-                Alert alert = alertService.createAlert(reading, vehicleService.getVehicle(reading.getVin()));
-                System.out.println(alert);
+                alertService.createAlert(reading, vehicleService.getVehicle(reading.getVin()));
                 timeStampSet.add(reading.getTimestamp());
                 returnedReading = readingRepository.storeReading(reading);
             }
