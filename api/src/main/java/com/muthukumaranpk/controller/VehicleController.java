@@ -20,12 +20,21 @@ public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
 
-    @RequestMapping(value = "/vehicles",
+    @RequestMapping(
+                    value = "/vehicles",
                     method = RequestMethod.PUT,
                     consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
                     produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Vehicle> createVehicles(@RequestBody List<Vehicle> vehicles) {
         return vehicleService.createVehicles(vehicles);
+    }
+
+    @RequestMapping(
+                    value = "/vehicles/getAll",
+                    method = RequestMethod.GET,
+                    produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Vehicle> findAll() {
+        return vehicleService.getAllVehicles();
     }
 
 }

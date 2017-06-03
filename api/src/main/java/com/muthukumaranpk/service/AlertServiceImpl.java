@@ -22,28 +22,33 @@ public class AlertServiceImpl implements AlertService {
     public Alert createAlert(Reading reading, Vehicle vehicle) {
         Alert alert = new Alert();
         alert.setVin(reading.getVin());
+        Alert returnedAlert = null;
 
         if (reading.getEngineRpm() > vehicle.getRedlineRpm()) {
             alert.setAlertPriority(AlertPriority.HIGH);
             alert.setAlertMessage("Engine rpm too high!");
+            returnedAlert = alertRepository.storeAlert(alert);
         }
 
         if (reading.getFuelVolume() < (0.1 * vehicle.getMaxFuelVolume())) {
             alert.setAlertPriority(AlertPriority.MEDIUM);
             alert.setAlertMessage("Low Fuel");
+            returnedAlert = alertRepository.storeAlert(alert);
         }
 
         if (isTireFaulty(reading.getTires())) {
             alert.setAlertPriority(AlertPriority.LOW);
             alert.setAlertMessage("Flat Tire!");
+            returnedAlert = alertRepository.storeAlert(alert);
         }
 
         if (reading.isEngineCoolantLow() || reading.isCheckEngineLightOn()) {
             alert.setAlertPriority(AlertPriority.LOW);
             alert.setAlertMessage("Check engine coolant and light!");
+            returnedAlert = alertRepository.storeAlert(alert);
         }
 
-        return alertRepository.storeAlert(alert);
+        return returnedAlert;
     }
 
     @Override

@@ -15,5 +15,5 @@ public interface VehicleRepository {
 
     Vehicle findVehicle(String vin);
 
-    Vehicle findAll();
+    List<Vehicle> findAll();
 }

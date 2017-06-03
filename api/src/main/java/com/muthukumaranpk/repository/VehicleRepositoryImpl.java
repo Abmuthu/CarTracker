@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
@@ -35,8 +36,8 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     }
 
     @Override
-    public Vehicle findAll() {
-        // TODO: pass appropriate query and return list
-        return null;
+    public List<Vehicle> findAll() {
+        TypedQuery<Vehicle> query = entityManager.createNamedQuery("Vehicle.findAll", Vehicle.class);
+        return query.getResultList();
     }
 }

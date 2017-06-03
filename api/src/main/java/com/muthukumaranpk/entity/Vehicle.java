@@ -9,6 +9,10 @@ import java.util.UUID;
  */
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Vehicle.findAll",
+                query = "SELECT vehicle FROM Vehicle vehicle")
+})
 public class Vehicle {
 
     @Id
@@ -18,7 +22,7 @@ public class Vehicle {
     private String model;
     private int year;
     private int redlineRpm;
-    private int maxFuelVolume;
+    private double maxFuelVolume;
     private String lastServiceDate;
 
     public String getVin() {
@@ -61,11 +65,11 @@ public class Vehicle {
         this.redlineRpm = redlineRpm;
     }
 
-    public int getMaxFuelVolume() {
+    public double getMaxFuelVolume() {
         return maxFuelVolume;
     }
 
-    public void setMaxFuelVolume(int maxFuelVolume) {
+    public void setMaxFuelVolume(double maxFuelVolume) {
         this.maxFuelVolume = maxFuelVolume;
     }
 
@@ -86,7 +90,7 @@ public class Vehicle {
 
         if (year != vehicle.year) return false;
         if (redlineRpm != vehicle.redlineRpm) return false;
-        if (maxFuelVolume != vehicle.maxFuelVolume) return false;
+        if (Double.compare(vehicle.maxFuelVolume, maxFuelVolume) != 0) return false;
         if (vin != null ? !vin.equals(vehicle.vin) : vehicle.vin != null) return false;
         if (make != null ? !make.equals(vehicle.make) : vehicle.make != null) return false;
         if (model != null ? !model.equals(vehicle.model) : vehicle.model != null) return false;
@@ -95,12 +99,15 @@ public class Vehicle {
 
     @Override
     public int hashCode() {
-        int result = vin != null ? vin.hashCode() : 0;
+        int result;
+        long temp;
+        result = vin != null ? vin.hashCode() : 0;
         result = 31 * result + (make != null ? make.hashCode() : 0);
         result = 31 * result + (model != null ? model.hashCode() : 0);
         result = 31 * result + year;
         result = 31 * result + redlineRpm;
-        result = 31 * result + maxFuelVolume;
+        temp = Double.doubleToLongBits(maxFuelVolume);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (lastServiceDate != null ? lastServiceDate.hashCode() : 0);
         return result;
     }

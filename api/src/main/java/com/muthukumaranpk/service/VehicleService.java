@@ -14,4 +14,6 @@ public interface VehicleService {
     boolean isVehiclePresent(String vin);
 
     Vehicle getVehicle(String vin);
+
+    List<Vehicle> getAllVehicles();
 }
