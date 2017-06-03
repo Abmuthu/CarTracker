@@ -57,8 +57,14 @@ public class AlertServiceImpl implements AlertService {
 
     @Override
     public List<Alert> getHighPriorityAlerts() {
-        return alertRepository.findAlerts();
+        return null;
     }
+
+    @Override
+    public List<Alert> getAllAlertsOfAVehicle(String vin) {
+        return alertRepository.findAllAlertsOfAVehicle(vin);
+    }
+
 
     private boolean isTireFaulty(Tires tires) {
         int frontLeft = tires.getFrontLeft();

@@ -11,5 +11,5 @@ public interface AlertRepository {
 
     Alert storeAlert(Alert alert);
 
-    List<Alert> findAlerts();
+    List<Alert> findAllAlertsOfAVehicle(String vin);
 }

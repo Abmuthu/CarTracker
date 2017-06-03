@@ -1,14 +1,16 @@
 package com.muthukumaranpk.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.UUID;
 
 /**
  * Created by muthukumaran on 5/30/17.
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Alert.findAllAlerts",
+                query = "SELECT alert FROM Alert alert WHERE alert.vin=:vin")
+})
 public class Alert {
 
     @Id

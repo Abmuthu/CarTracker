@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
@@ -26,8 +27,12 @@ public class AlertRepositoryImpl implements AlertRepository {
     }
 
     @Override
-    public List<Alert> findAlerts() {
-        // TODO: pass apropriate query and return the list
-        return null;
+    public List<Alert> findAllAlertsOfAVehicle(String vin) {
+        TypedQuery<Alert> query = entityManager.createNamedQuery("Alert.findAllAlerts", Alert.class);
+        query.setParameter("vin", vin);
+        List<Alert> resultList = query.getResultList();
+        return resultList;
     }
+
+
 }

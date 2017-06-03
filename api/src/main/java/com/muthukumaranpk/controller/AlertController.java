@@ -15,15 +15,20 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://mocker.egen.io", maxAge = 3600)
+@RequestMapping(value = "alerts")
 public class AlertController {
     @Autowired
     private AlertService alertService;
 
 
-    @RequestMapping(value = "/alerts",
+    @RequestMapping(value = "{vin}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Alert> getAlerts() {
-        return alertService.getHighPriorityAlerts();
+    public List<Alert> getAlertsOfAVehicle(@PathVariable("vin") String vin) {
+        System.out.println("Alert called!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        if (alertService.getAllAlertsOfAVehicle(vin) == null) {
+            System.out.println("Alert list is null!!!!");
+        }
+        return alertService.getAllAlertsOfAVehicle(vin);
     }
 }
