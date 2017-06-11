@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="car-tracker-app">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>Car Tracker</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	</head>
+
+	<body>
+
+		<div ng-controller="VehicleServiceController as vehicleController">
+
+			<table class="table table-striped">
+			  <thead>
+			    <tr>
+			      <th>vin</th>
+			      <th>make</th>
+			      <th>model</th>
+			      <th>year</th>
+			      <th>redlineRpm</th>
+			      <th>maxFuelVolume</th>
+			      <th>lastServiceDate</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr ng-repeat="vehicle in vehicleController.vehicles">
+			      <td>{{vehicle.vin}}</td>
+			      <td>{{vehicle.make}}</td>
+			      <td>{{vehicle.model}}</td>
+			      <td>{{vehicle.year}}</td>
+			      <td>{{vehicle.redlineRpm}}</td>
+			      <td>{{vehicle.maxFuelVolume}}</td>
+			      <td>{{vehicle.lastServiceDate}}</td>
+			    </tr>
+			  </tbody>
+			</table>
+
+		</div>
+
+
+
+		<!-- TODO: Seperate html elements into seperate directives. -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"> </script>
+		<script src="app.module.js"></script>
+		<script src="vehicle-list.controller.js"> </script>
+		<script src="vehicle.service.js"></script>
+		<script src="alert-list.controller.js"></script>
+		<script src="alert.service.js"></script>	
+	</body>
+</html>
