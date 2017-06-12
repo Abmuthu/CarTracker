@@ -3,6 +3,7 @@
 	app.controller("VehicleServiceController", vehicleController);
 
 	function vehicleController(VehicleService) {
+		console.log("controller called");
 		this.vehicles = VehicleService.vehicles;
 	}
 })();
