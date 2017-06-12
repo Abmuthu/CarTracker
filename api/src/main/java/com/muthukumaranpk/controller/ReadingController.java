@@ -14,7 +14,7 @@ import java.util.List;
  * Created by muthukumaran on 5/26/17.
  */
 @RestController
-@CrossOrigin(origins = "http://mocker.egen.io", maxAge = 3600)
+@CrossOrigin(origins = {"http://mocker.egen.io", "http://127.0.0.1:8080"}, maxAge = 3600)
 public class ReadingController {
 
     @Autowired

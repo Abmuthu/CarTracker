@@ -26,7 +26,6 @@ public class Reading {
     private double latitude;
     private double longitude;
 
-    @Column(unique = true)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private Date timestamp;
 

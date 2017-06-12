@@ -27,6 +27,7 @@ public class AlertServiceImpl implements AlertService {
             alert.setVin(reading.getVin());
             alert.setAlertPriority(AlertPriority.HIGH);
             alert.setAlertMessage("Engine rpm too high!");
+            alert.setTimestamp(reading.getTimestamp());
             alertRepository.storeAlert(alert);
         }
 
@@ -35,6 +36,7 @@ public class AlertServiceImpl implements AlertService {
             alert.setVin(reading.getVin());
             alert.setAlertPriority(AlertPriority.MEDIUM);
             alert.setAlertMessage("Low Fuel");
+            alert.setTimestamp(reading.getTimestamp());
             alertRepository.storeAlert(alert);
         }
 
@@ -43,6 +45,7 @@ public class AlertServiceImpl implements AlertService {
             alert.setVin(reading.getVin());
             alert.setAlertPriority(AlertPriority.LOW);
             alert.setAlertMessage("Flat Tire!");
+            alert.setTimestamp(reading.getTimestamp());
             alertRepository.storeAlert(alert);
         }
 
@@ -51,6 +54,7 @@ public class AlertServiceImpl implements AlertService {
             alert.setVin(reading.getVin());
             alert.setAlertPriority(AlertPriority.LOW);
             alert.setAlertMessage("Check engine coolant and light!");
+            alert.setTimestamp(reading.getTimestamp());
             alertRepository.storeAlert(alert);
         }
     }

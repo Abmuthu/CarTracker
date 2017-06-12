@@ -1,6 +1,7 @@
 package com.muthukumaranpk.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -9,7 +10,12 @@ import java.util.UUID;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Alert.findAllAlerts",
-                query = "SELECT alert FROM Alert alert WHERE alert.vin=:vin")
+                query = "SELECT alert FROM Alert alert WHERE alert.vin=:vin"),
+
+//        @NamedQuery(name = "Alert.findHighPriorityAlerts",
+//                query = "SELECT alert FROM Alert alert WHERE alert.timestamp=: AND alert.alertPriority ")
+
+
 })
 public class Alert {
 
@@ -23,6 +29,7 @@ public class Alert {
     }
 
     private String vin;
+    private Date timestamp;
     private AlertPriority alertPriority;
     private String alertMessage;
 
@@ -32,6 +39,14 @@ public class Alert {
 
     public void setVin(String vin) {
         this.vin = vin;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 
     public AlertPriority getAlertPriority() {
