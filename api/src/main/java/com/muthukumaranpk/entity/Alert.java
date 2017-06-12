@@ -1,5 +1,7 @@
 package com.muthukumaranpk.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
@@ -9,11 +11,14 @@ import java.util.UUID;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Alert.findAllAlerts",
+        @NamedQuery(name = "Alert.findAllAlertsOfSingleVehicle",
                 query = "SELECT alert FROM Alert alert WHERE alert.vin=:vin"),
 
-//        @NamedQuery(name = "Alert.findHighPriorityAlerts",
-//                query = "SELECT alert FROM Alert alert WHERE alert.timestamp=: AND alert.alertPriority ")
+        @NamedQuery(name = "Alert.findAllAlerts",
+                query = "SELECT alert FROM Alert alert")
+
+//        @NamedQuery(name = "Alert.findAlertsInPastTwoHours",
+//                query = "SELECT alert FROM Alert alert WHERE alert.timestamp > FUNCTION('DATE_SUB', FUNCTION('NOW'), :interval)")
 
 
 })
@@ -29,9 +34,12 @@ public class Alert {
     }
 
     private String vin;
-    private Date timestamp;
+
     private AlertPriority alertPriority;
     private String alertMessage;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private Date timestamp;
 
     public String getVin() {
         return vin;

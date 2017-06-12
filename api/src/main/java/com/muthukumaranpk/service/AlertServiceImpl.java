@@ -60,13 +60,14 @@ public class AlertServiceImpl implements AlertService {
     }
 
     @Override
-    public List<Alert> getHighPriorityAlerts() {
-        return null;
+    public List<Alert> getAllAlertsOfAVehicle(String vin) {
+        return alertRepository.findAllAlertsOfAVehicle(vin);
     }
 
     @Override
-    public List<Alert> getAllAlertsOfAVehicle(String vin) {
-        return alertRepository.findAllAlertsOfAVehicle(vin);
+    public List<Alert> getAllAlerts() {
+        // TODO: return alerts only within 2 hours
+        return alertRepository.findAllAlerts();
     }
 
 
