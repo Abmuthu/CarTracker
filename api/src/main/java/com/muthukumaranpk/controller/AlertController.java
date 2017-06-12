@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @RestController
-@CrossOrigin(origins = "http://mocker.egen.io", maxAge = 3600)
+@CrossOrigin(origins = {"http://mocker.egen.io", "http://127.0.0.1:8080"}, maxAge = 3600)
 @RequestMapping(value = "alerts")
 public class AlertController {
     @Autowired
@@ -25,10 +25,16 @@ public class AlertController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Alert> getAlertsOfAVehicle(@PathVariable("vin") String vin) {
-        System.out.println("Alert called!!!!!!!!!!!!!!!!!!!!!!!!!!");
         if (alertService.getAllAlertsOfAVehicle(vin) == null) {
-            System.out.println("Alert list is null!!!!");
+            System.out.println("Alert list is null!");
         }
         return alertService.getAllAlertsOfAVehicle(vin);
+    }
+
+    @RequestMapping(value = "/getAll",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Alert> getAllAlertsInPastTwoHours() {
+        return alertService.getAllAlerts();
     }
 }
