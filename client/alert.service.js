@@ -1,38 +1,15 @@
 (function() {
 	var app = angular.module("car-tracker-app");
-	app.service("AlertService", function() {
-		this.alerts = [
-		    {
-		        "vin": "1FMYU02143KB34432",
-		        "timestamp": 1497221814400,
-		        "alertPriority": "LOW",
-		        "alertMessage": "Flat Tire!"
-		    },
-		    {
-		        "vin": "1FMYU02143KB34432",
-		        "timestamp": 1497221868547,
-		        "alertPriority": "LOW",
-		        "alertMessage": "Flat Tire!"
-		    },
-		    {
-		        "vin": "1FMYU02143KB34432",
-		        "timestamp": 1497221793412,
-		        "alertPriority": "HIGH",
-		        "alertMessage": "Engine rpm too high!"
-		    },
-		    {
-		        "vin": "1FMYU02143KB34432",
-		        "timestamp": 1497221835533,
-		        "alertPriority": "LOW",
-		        "alertMessage": "Flat Tire!"
-		    },
-		    {
-		        "vin": "1FMYU02143KB34432",
-		        "timestamp": 1497221859532,
-		        "alertPriority": "HIGH",
-		        "alertMessage": "Engine rpm too high!"
-		    }
-	    ];
+	app.service("AlertService", function($http) {
+		var self = this;
+
+		self.getAlerts = function(vin) {
+			var promise1 = $http.get("http://localhost:8081/api/alerts/" + vin);
+			var promise2 = promise1.then(function(response) {
+				return response.data;
+			});
+			return promise2;
+		}
 	});
-	
 })();
+	
