@@ -12,6 +12,11 @@ app.config(function($routeProvider) {
 				controller:"AlertServiceController",
 				controllerAs:"alertController"
 			})
+			.when("/criticalAlerts", {
+				templateUrl:"all-alerts-list.tmpl.html",
+				controller:"AlertServiceController",
+				controllerAs:"alertController"
+			})
 			.when("/welcome", {
 				templateUrl:"welcome.html",
 			})
