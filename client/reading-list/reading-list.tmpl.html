@@ -1,0 +1,9 @@
+<h1> FuelVolume Plot </h1>
+
+<div>
+  <p> Enter the vin: <input type="text" ng-model="readingController.vin"></input> 
+  <button type="button" class="btn btn-primary" ng-click="readingController.getReadingsOfAVehicle()">Submit</button> 
+  </p>
+</div>
+
+<zingchart id="myChart" zc-json="myJson" zc-height=500 zc-width=600></zingchart>

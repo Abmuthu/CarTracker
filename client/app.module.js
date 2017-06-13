@@ -3,22 +3,22 @@ var app = angular.module("car-tracker-app", ['ngRoute', 'ngMap', 'zingchart-angu
 app.config(function($routeProvider) {
 		$routeProvider
 			.when("/vehicles", {
-				templateUrl:"vehicle-list.tmpl.html",
+				templateUrl:"vehicle-list/vehicle-list.tmpl.html",
 				controller:"VehicleServiceController",
 				controllerAs:"vehicleController"
 			})
 			.when("/alerts", {
-				templateUrl:"alert-list.tmpl.html",
+				templateUrl:"alert-list/alert-list.tmpl.html",
 				controller:"AlertServiceController",
 				controllerAs:"alertController"
 			})
 			.when("/criticalAlerts", {
-				templateUrl:"all-alerts-list.tmpl.html",
+				templateUrl:"alert-list/high-priority-alert-list.tmpl.html",
 				controller:"AlertServiceController",
 				controllerAs:"alertController"
 			})
 			.when("/readingsPlot", {
-				templateUrl:"readings-list.tmpl.html",
+				templateUrl:"reading-list/reading-list.tmpl.html",
 				controller:"ReadingServiceController",
 				controllerAs:"readingController"
 			})
@@ -26,7 +26,7 @@ app.config(function($routeProvider) {
 				templateUrl:"welcome.html"
 			})
 			.when("/geolocation", {
-				templateUrl:"map.html"
+				templateUrl:"geolocation.html"
 			})
 			.otherwise({
 				redirectTo: "/welcome"
