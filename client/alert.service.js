@@ -4,7 +4,6 @@
 		var self = this;
 
 		self.getAlertsOfAVehicle = function(vin) {
-			console.log("getAlertsOfAVehicle of service called!");
 			var promise1 = $http.get("http://localhost:8081/api/alerts/" + vin);
 			var promise2 = promise1.then(function(response) {
 				return response.data;
@@ -13,7 +12,6 @@
 		}
 
 		self.getAllAlerts = function() {
-			console.log("getAllAlerts of service called!");
 			var promise1 = $http.get("http://localhost:8081/api/alerts/getAll");
 			var promise2 = promise1.then(function(response) {
 				return response.data;
