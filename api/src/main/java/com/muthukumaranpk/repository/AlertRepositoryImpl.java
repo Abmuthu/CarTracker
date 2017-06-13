@@ -36,10 +36,7 @@ public class AlertRepositoryImpl implements AlertRepository {
 
     @Override
     public List<Alert> findAllAlerts() {
-        System.out.println("===============================================================================");
         TypedQuery<Alert> query = entityManager.createNamedQuery("Alert.findAllAlerts", Alert.class);
-//        String interval = "INTERVAL 2 HOUR";
-//        query.setParameter("interval", interval);
         List<Alert> resultList = query.getResultList();
         return resultList;
     }

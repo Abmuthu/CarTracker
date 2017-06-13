@@ -27,6 +27,7 @@ public class ReadingRepositoryImpl implements ReadingRepository {
 
     @Override
     public List<Reading> findReadingsOfAVehicle(String vin) {
+        // NOTE: Due to a bug TypedQuery is not working in this end point!
         TypedQuery<Reading> query = entityManager.createNamedQuery("Reading.findReadingsOfSingleVehicle", Reading.class);
         query.setParameter("vin", vin);
         List<Reading> resultList = query.getResultList();
