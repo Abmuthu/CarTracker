@@ -33,7 +33,6 @@ public class ReadingController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<Reading> getAlertsOfAVehicle(@PathVariable("vin") String vin) {
-
         return readingService.getAllReadingsOfAVehicle(vin);
     }
 

@@ -2,7 +2,11 @@ package com.muthukumaranpk.repository;
 
 import com.muthukumaranpk.entity.Alert;
 import com.muthukumaranpk.entity.Reading;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,10 +31,10 @@ public class ReadingRepositoryImpl implements ReadingRepository {
 
     @Override
     public List<Reading> findReadingsOfAVehicle(String vin) {
-        // NOTE: Due to a bug TypedQuery is not working in this end point!
-        TypedQuery<Reading> query = entityManager.createNamedQuery("Reading.findReadingsOfSingleVehicle", Reading.class);
-        query.setParameter("vin", vin);
-        List<Reading> resultList = query.getResultList();
-        return resultList;
+        Session session = entityManager.unwrap(Session.class);
+        Query<Reading> query = session.createQuery("from Reading where vin = :num");
+        query.setParameter("num", vin);
+        List<Reading> list = query.list();
+        return list;
     }
 }
