@@ -46,7 +46,6 @@ public class ReadingServiceImpl implements ReadingService {
         } else {
             // throw exception no associated vehicle
         }
-
         return returnedReading;
     }
 

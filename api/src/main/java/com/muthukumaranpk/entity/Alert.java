@@ -14,8 +14,8 @@ import java.util.UUID;
         @NamedQuery(name = "Alert.findAllAlertsOfSingleVehicle",
                 query = "SELECT alert FROM Alert alert WHERE alert.vin=:vin"),
 
-        @NamedQuery(name = "Alert.findAllAlerts",
-                query = "SELECT alert FROM Alert alert")
+//        @NamedQuery(name = "Alert.findAllAlerts",
+//                query = "SELECT alert FROM Alert alert")
 
 //        @NamedQuery(name = "Alert.findAlertsInPastTwoHours",
 //                query = "SELECT alert FROM Alert alert WHERE alert.timestamp > FUNCTION('DATE_SUB', FUNCTION('NOW'), :interval)")

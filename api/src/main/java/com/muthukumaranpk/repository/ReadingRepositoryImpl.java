@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +20,8 @@ import java.util.List;
 
 @Repository
 public class ReadingRepositoryImpl implements ReadingRepository {
+
+    private static int THIRTY_MINUTES = 30 * 60 * 1000;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -32,8 +35,9 @@ public class ReadingRepositoryImpl implements ReadingRepository {
     @Override
     public List<Reading> findReadingsOfAVehicle(String vin) {
         Session session = entityManager.unwrap(Session.class);
-        Query<Reading> query = session.createQuery("from Reading where vin = :num");
+        Query<Reading> query = session.createQuery("from Reading where vin = :num and timestamp > :date");
         query.setParameter("num", vin);
+        query.setParameter("date", new Date(System.currentTimeMillis() - THIRTY_MINUTES));
         List<Reading> list = query.list();
         return list;
     }
