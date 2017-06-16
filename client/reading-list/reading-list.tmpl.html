@@ -1,7 +1,13 @@
-<h1> FuelVolume Plot </h1>
+<h1> Plot </h1>
 
 <div>
-  <p> Enter the vin: <input type="text" ng-model="readingController.vin"></input> 
+  <p> Enter the Vin: <input type="text" ng-model="readingController.vin"></input> 
+  <p> Enter the Time Range: <input type="text" ng-model="readingController.timeRange"></input> <br>
+  <div>
+  	Pick a Signal:
+  	<input type="radio" ng-model="readingController.selectedSignal" value="fuelVolume">FuelVolume
+  	<input type="radio" ng-model="readingController.selectedSignal" value="speed">Speed
+  </div>
   <button type="button" class="btn btn-primary" ng-click="readingController.getReadingsOfAVehicle()">Submit</button> 
   </p>
 </div>
