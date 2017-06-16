@@ -51,8 +51,8 @@ public class ReadingServiceImpl implements ReadingService {
 
     @Override
     @Transactional
-    public List<Reading> getAllReadingsOfAVehicle(String vin) {
-        return readingRepository.findReadingsOfAVehicle(vin);
+    public List<Reading> getReadingsInTimeRange(String vin, int timeRange) {
+        return readingRepository.findReadingsInTimeRange(vin, timeRange);
     }
 }
 

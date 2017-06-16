@@ -32,8 +32,17 @@ public class ReadingController {
     @RequestMapping(value = "{vin}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Reading> getAlertsOfAVehicle(@PathVariable("vin") String vin) {
-        return readingService.getAllReadingsOfAVehicle(vin);
+    public List<Reading> getReadingsOfAVehicle(@PathVariable("vin") String vin) {
+        return readingService.getReadingsInTimeRange(vin, 30);
     }
+
+    @RequestMapping(value="{vin}/{timeRange}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Reading> getReadingsInTimeRange(@PathVariable("vin") String vin, @PathVariable("timeRange") int timeRange) {
+        return readingService.getReadingsInTimeRange(vin, timeRange);
+    }
+
+
 
 }

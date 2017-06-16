@@ -4,6 +4,7 @@ import com.muthukumaranpk.entity.Alert;
 import com.muthukumaranpk.entity.Reading;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.hibernate.query.criteria.internal.expression.function.AggregationFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +22,7 @@ import java.util.List;
 @Repository
 public class ReadingRepositoryImpl implements ReadingRepository {
 
-    private static int THIRTY_MINUTES = 30 * 60 * 1000;
+    private static int MINUTE = 60 * 1000;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -34,11 +35,11 @@ public class ReadingRepositoryImpl implements ReadingRepository {
     }
 
     @Override
-    public List<Reading> findReadingsOfAVehicle(String vin) {
+    public List<Reading> findReadingsInTimeRange(String vin, int timeRange) {
         Session session = entityManager.unwrap(Session.class);
         Query<Reading> query = session.createNamedQuery("Reading.findReadingsOfSingleVehicle", Reading.class);
         query.setParameter("num", vin);
-        query.setParameter("date", new Date(System.currentTimeMillis() - THIRTY_MINUTES));
+        query.setParameter("timeRange", new Date(System.currentTimeMillis() - timeRange * MINUTE));
         List<Reading> list = query.list();
         return list;
     }

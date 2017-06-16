@@ -11,5 +11,5 @@ public interface ReadingService {
 
     Reading putReading(Reading reading);
 
-    List<Reading> getAllReadingsOfAVehicle(String vin);
+    List<Reading> getReadingsInTimeRange(String vin, int timeRange);
 }

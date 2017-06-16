@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @NamedQueries({
         @NamedQuery(name = "Reading.findReadingsOfSingleVehicle",
-                query = "Select reading from Reading reading where reading.vin = :num and reading.timestamp > :date")
+                query = "Select reading from Reading reading where reading.vin = :num and reading.timestamp > :timeRange order by reading.timestamp")
 
 })
 @Entity
