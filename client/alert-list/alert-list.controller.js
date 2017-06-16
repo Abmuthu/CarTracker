@@ -2,7 +2,7 @@
 	var app = angular.module("car-tracker-app");
 	app.controller("AlertServiceController", alertController);
 
-	function alertController(AlertService, $http) {
+	function alertController(AlertService) {
 		
 		var self = this;
 		self.allAlerts = [];
