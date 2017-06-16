@@ -52,7 +52,6 @@ public class ReadingServiceImpl implements ReadingService {
     @Override
     @Transactional
     public List<Reading> getAllReadingsOfAVehicle(String vin) {
-        // TODO: return only latitude and longitude within 30 minutes
         return readingRepository.findReadingsOfAVehicle(vin);
     }
 }

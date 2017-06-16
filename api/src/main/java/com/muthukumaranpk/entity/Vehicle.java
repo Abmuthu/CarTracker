@@ -24,6 +24,7 @@ public class Vehicle {
     private int redlineRpm;
     private double maxFuelVolume;
     private String lastServiceDate;
+    private int noOfCriticalAlerts;
 
     public String getVin() {
         return vin;
@@ -81,6 +82,14 @@ public class Vehicle {
         this.lastServiceDate = lastServiceDate;
     }
 
+    public int getNoOfCriticalAlerts() {
+        return noOfCriticalAlerts;
+    }
+
+    public void setNoOfCriticalAlerts(int noOfCriticalAlerts) {
+        this.noOfCriticalAlerts = noOfCriticalAlerts;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -91,6 +100,7 @@ public class Vehicle {
         if (year != vehicle.year) return false;
         if (redlineRpm != vehicle.redlineRpm) return false;
         if (Double.compare(vehicle.maxFuelVolume, maxFuelVolume) != 0) return false;
+        if (noOfCriticalAlerts != vehicle.noOfCriticalAlerts) return false;
         if (vin != null ? !vin.equals(vehicle.vin) : vehicle.vin != null) return false;
         if (make != null ? !make.equals(vehicle.make) : vehicle.make != null) return false;
         if (model != null ? !model.equals(vehicle.model) : vehicle.model != null) return false;
@@ -109,6 +119,7 @@ public class Vehicle {
         temp = Double.doubleToLongBits(maxFuelVolume);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (lastServiceDate != null ? lastServiceDate.hashCode() : 0);
+        result = 31 * result + noOfCriticalAlerts;
         return result;
     }
 
@@ -122,6 +133,7 @@ public class Vehicle {
                 ", redlineRpm=" + redlineRpm +
                 ", maxFuelVolume=" + maxFuelVolume +
                 ", lastServiceDate='" + lastServiceDate + '\'' +
+                ", noOfCriticalAlerts=" + noOfCriticalAlerts +
                 '}';
     }
 }

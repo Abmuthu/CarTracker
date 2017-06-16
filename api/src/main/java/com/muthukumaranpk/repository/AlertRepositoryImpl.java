@@ -1,6 +1,7 @@
 package com.muthukumaranpk.repository;
 
 import com.muthukumaranpk.entity.Alert;
+import com.muthukumaranpk.entity.AlertPriority;
 import com.muthukumaranpk.entity.Reading;
 import com.muthukumaranpk.service.AlertService;
 import com.sun.xml.internal.bind.v2.TODO;
@@ -41,11 +42,14 @@ public class AlertRepositoryImpl implements AlertRepository {
     }
 
     @Override
-    public List<Alert> findAllAlerts() {
+    public List<Alert> findCriticalAlerts() {
         Session session = entityManager.unwrap(Session.class);
-        Query<Alert> query = session.createQuery("from Alert where timestamp > :date");
+        Query<Alert> query = session.createNamedQuery("Alert.findCriticalAlertsInPastTwoHours", Alert.class);
+        query.setParameter("priority", AlertPriority.HIGH);
         query.setParameter("date", new Date(System.currentTimeMillis() - TWO_HOURS));
         List<Alert> list = query.list();
+
+
         return list;
     }
 

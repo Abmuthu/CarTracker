@@ -66,8 +66,8 @@ public class AlertServiceImpl implements AlertService {
 
     @Override
     @Transactional
-    public List<Alert> getAllAlerts() {
-        return alertRepository.findAllAlerts();
+    public List<Alert> getCriticalAlerts() {
+        return alertRepository.findCriticalAlerts();
     }
 
 
