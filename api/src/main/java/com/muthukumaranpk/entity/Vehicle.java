@@ -13,7 +13,7 @@ import java.util.UUID;
         @NamedQuery(name = "Vehicle.findAll",
                 query = "SELECT vehicle FROM Vehicle vehicle")
 })
-public class Vehicle {
+public class Vehicle implements Comparable<Vehicle> {
 
     @Id
     private String vin;
@@ -135,5 +135,10 @@ public class Vehicle {
                 ", lastServiceDate='" + lastServiceDate + '\'' +
                 ", noOfCriticalAlerts=" + noOfCriticalAlerts +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Vehicle o) {
+        return (this.getNoOfCriticalAlerts() - o.getNoOfCriticalAlerts());
     }
 }
