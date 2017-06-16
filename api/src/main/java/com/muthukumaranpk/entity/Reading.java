@@ -9,12 +9,13 @@ import java.util.UUID;
 /**
  * Created by muthukumaran on 5/26/17.
  */
-@Entity
+
 @NamedQueries({
         @NamedQuery(name = "Reading.findReadingsOfSingleVehicle",
-                query = "SELECT reading FROM Reading reading WHERE reading.vin=:vin")
+                query = "Select reading from Reading reading where reading.vin = :num and reading.timestamp > :timeRange order by reading.timestamp")
 
 })
+@Entity
 public class Reading {
 
     @Id

@@ -46,14 +46,13 @@ public class ReadingServiceImpl implements ReadingService {
         } else {
             // throw exception no associated vehicle
         }
-
         return returnedReading;
     }
 
     @Override
-    public List<Reading> getAllReadingsOfAVehicle(String vin) {
-        // TODO: return only latitude and longitude within 30 minutes
-        return readingRepository.findReadingsOfAVehicle(vin);
+    @Transactional
+    public List<Reading> getReadingsInTimeRange(String vin, int timeRange) {
+        return readingRepository.findReadingsInTimeRange(vin, timeRange);
     }
 }
 

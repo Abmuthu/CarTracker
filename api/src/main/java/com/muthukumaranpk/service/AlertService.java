@@ -15,5 +15,5 @@ public interface AlertService {
 
     List<Alert> getAllAlertsOfAVehicle(String vin);
 
-    List<Alert> getAllAlerts();
+    List<Alert> getCriticalAlerts();
 }

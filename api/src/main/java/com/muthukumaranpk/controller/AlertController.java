@@ -31,10 +31,4 @@ public class AlertController {
         return alertService.getAllAlertsOfAVehicle(vin);
     }
 
-    @RequestMapping(value = "/getAll",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<Alert> getAllAlertsInPastTwoHours() {
-        return alertService.getAllAlerts();
-    }
 }

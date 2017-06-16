@@ -1,13 +1,18 @@
 package com.muthukumaranpk.repository;
 
 import com.muthukumaranpk.entity.Alert;
+import com.muthukumaranpk.entity.AlertPriority;
+import com.muthukumaranpk.entity.Reading;
 import com.muthukumaranpk.service.AlertService;
 import com.sun.xml.internal.bind.v2.TODO;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,6 +21,8 @@ import java.util.List;
 
 @Repository
 public class AlertRepositoryImpl implements AlertRepository {
+
+    private static int TWO_HOURS = 2 * 60 * 60 * 1000;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -35,13 +42,15 @@ public class AlertRepositoryImpl implements AlertRepository {
     }
 
     @Override
-    public List<Alert> findAllAlerts() {
-        System.out.println("===============================================================================");
-        TypedQuery<Alert> query = entityManager.createNamedQuery("Alert.findAllAlerts", Alert.class);
-//        String interval = "INTERVAL 2 HOUR";
-//        query.setParameter("interval", interval);
-        List<Alert> resultList = query.getResultList();
-        return resultList;
+    public List<Alert> findCriticalAlerts() {
+        Session session = entityManager.unwrap(Session.class);
+        Query<Alert> query = session.createNamedQuery("Alert.findCriticalAlertsInPastTwoHours", Alert.class);
+        query.setParameter("priority", AlertPriority.HIGH);
+        query.setParameter("date", new Date(System.currentTimeMillis() - TWO_HOURS));
+        List<Alert> list = query.list();
+
+
+        return list;
     }
 
 }

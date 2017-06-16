@@ -65,9 +65,9 @@ public class AlertServiceImpl implements AlertService {
     }
 
     @Override
-    public List<Alert> getAllAlerts() {
-        // TODO: return alerts only within 2 hours
-        return alertRepository.findAllAlerts();
+    @Transactional
+    public List<Alert> getCriticalAlerts() {
+        return alertRepository.findCriticalAlerts();
     }
 
 

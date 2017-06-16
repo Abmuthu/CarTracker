@@ -1,5 +1,6 @@
 package com.muthukumaranpk.service;
 
+import com.muthukumaranpk.entity.Alert;
 import com.muthukumaranpk.entity.Vehicle;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface VehicleService {
     Vehicle getVehicle(String vin);
 
     List<Vehicle> getAllVehicles();
+
+    List<Vehicle> getVehiclesWithCriticalAlerts();
 }

@@ -12,5 +12,5 @@ public interface ReadingRepository {
 
     Reading storeReading(Reading reading);
 
-    List<Reading> findReadingsOfAVehicle(String vin);
+    List<Reading> findReadingsInTimeRange(String vin, int timeRange);
 }
