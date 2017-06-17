@@ -12,7 +12,7 @@ import java.util.UUID;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Alert.findAllAlertsOfSingleVehicle",
-                query = "SELECT alert FROM Alert alert WHERE alert.vin=:vin"),
+                query = "SELECT alert FROM Alert alert WHERE alert.vin=:vin order by alert.timestamp"),
 
         @NamedQuery(name = "Alert.findCriticalAlertsInPastTwoHours",
                 query = "Select alert from Alert alert where alert.timestamp > :date and alert.alertPriority = :priority")
