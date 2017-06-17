@@ -13,20 +13,22 @@ app.config(function($routeProvider) {
 				controllerAs:"alertController"
 			})
 			.when("/criticalAlerts", {
-				templateUrl:"alert-list/high-priority-alert-list.tmpl.html",
-				controller:"AlertServiceController",
-				controllerAs:"alertController"
+				templateUrl:"vehicle-list/vehicle-alert-list.tmpl.html",
+				controller:"VehiclesWithAlertsServiceController",
+				controllerAs:"vehiclesWithAlertsController"
 			})
 			.when("/readingsPlot", {
 				templateUrl:"reading-list/reading-list.tmpl.html",
 				controller:"ReadingServiceController",
 				controllerAs:"readingController"
 			})
+			.when("/geolocation", {
+				templateUrl:"reading-list/geolocation.html",
+				controller:"ReadingServiceController",
+				controllerAs:"readingController"
+			})
 			.when("/welcome", {
 				templateUrl:"welcome.html"
-			})
-			.when("/geolocation", {
-				templateUrl:"geolocation.html"
 			})
 			.otherwise({
 				redirectTo: "/welcome"

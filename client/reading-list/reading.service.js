@@ -11,6 +11,14 @@
 			return promise2;
 		}
 
+		self.getReadingsInLastThirtyMinutes = function(vin) {
+			var promise1 = $http.get("http://localhost:8081/api/readings/" + vin + "/" + 30);
+			var promise2 = promise1.then(function(response) {
+				return response.data;
+			});
+			return promise2;
+		}
+
 	});
 })();
 	

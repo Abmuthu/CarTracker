@@ -1,0 +1,13 @@
+<div>
+  <p> Enter the Vin: <input type="text" ng-model="readingController.vin"></input> 
+  <button type="button" class="btn btn-primary" ng-click="readingController.markLocations()">Submit</button> 
+  </p>
+</div>
+
+<div ng-if="readingController.show">
+	<ng-map zoom="{{readingController.zoom}}" center="">
+	  <marker ng-repeat="reading in readingController.readingsInThirtyMinutes" position="{{reading.latitude}}, {{reading.longitude}}" />
+	  <control name="overviewMap" opened="true" />
+	</ng-map>` 
+</div>
+

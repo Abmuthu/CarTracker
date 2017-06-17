@@ -9,6 +9,14 @@
 			});
 			return promise2;
 		}
+
+		self.getVehiclesWithCriticalAlerts = function() {
+			var promise1 = $http.get("http://localhost:8081/api/vehicles/getCriticalAlerts");
+			var promise2 = promise1.then(function(response) {
+				return response.data;
+			});
+			return promise2;
+		}
 	});
 	
 })();

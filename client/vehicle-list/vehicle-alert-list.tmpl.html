@@ -12,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="vehicle in alertController.vehicles | orderBy:'hightAlertCount'">
+    <tr ng-repeat="vehicle in vehiclesWithAlertsController.vehicles">
       <td>{{vehicle.vin}}</td>
       <td>{{vehicle.make}}</td>
       <td>{{vehicle.model}}</td>
@@ -20,7 +20,7 @@
       <td>{{vehicle.redlineRpm}}</td>
       <td>{{vehicle.maxFuelVolume}}</td>
       <td>{{vehicle.lastServiceDate}}</td>
-      <td>{{vehicle.hightAlertCount}}</td>
+      <td>{{vehicle.noOfCriticalAlerts}}</td>
     </tr>
   </tbody>
 </table>

@@ -1,10 +1,10 @@
 (function(){
 	var app = angular.module("car-tracker-app");
-	app.controller("VehicleServiceController", vehicleController);
+	app.controller("VehiclesWithAlertsServiceController", vehicleController);
 
 	function vehicleController(VehicleService) {
 		var self = this;
-		VehicleService.getVehicles()
+		VehicleService.getVehiclesWithCriticalAlerts()
 			.then(function(data) {
 				self.vehicles = data;
 		});
