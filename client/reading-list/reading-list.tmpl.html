@@ -1,0 +1,15 @@
+<h1> Plot </h1>
+
+<div>
+  <p> Enter the Vin: <input type="text" ng-model="readingController.vin"></input> 
+  <p> Enter the Time Range(in minutes): <input type="text" ng-model="readingController.timeRange"></input> <br>
+  <div>
+  	Pick a Signal:
+  	<input type="radio" ng-model="readingController.selectedSignal" value="fuelVolume">FuelVolume
+  	<input type="radio" ng-model="readingController.selectedSignal" value="speed">Speed
+  </div>
+  <button type="button" class="btn btn-primary" ng-click="readingController.getReadingsOfAVehicle()">Submit</button> 
+  </p>
+</div>
+
+<zingchart id="myChart" zc-json="myJson" zc-height=500 zc-width=600></zingchart>

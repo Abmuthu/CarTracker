@@ -1,0 +1,26 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Vin</th>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Year</th>
+      <th>RedlineRpm</th>
+      <th>MaxFuelVolume</th>
+      <th>LastServiceDate</th>
+      <th>NoOfHighAlerts</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="vehicle in vehiclesWithAlertsController.vehicles">
+      <td>{{vehicle.vin}}</td>
+      <td>{{vehicle.make}}</td>
+      <td>{{vehicle.model}}</td>
+      <td>{{vehicle.year}}</td>
+      <td>{{vehicle.redlineRpm}}</td>
+      <td>{{vehicle.maxFuelVolume}}</td>
+      <td>{{vehicle.lastServiceDate}}</td>
+      <td>{{vehicle.noOfCriticalAlerts}}</td>
+    </tr>
+  </tbody>
+</table>

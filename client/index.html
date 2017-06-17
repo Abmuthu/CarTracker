@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="car-tracker-app">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>Car Tracker</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	</head>
+
+	<body>
+		 <ul class="nav nav-pills">
+    		<li><a href="#!vehicles">VehicleList</a></li>
+    		<li><a href="#!alerts">AlertHistory</a></li>
+    		<li><a href="#!criticalAlerts">CriticalAlertsList</a></li>
+    		<li><a href="#!readingsPlot">ReadingsPlot</a></li>
+    		<li><a href="#!geolocation">Geolocation</a></li>
+    		 </ul>
+
+  		<div ng-view>
+  			
+  		</div>
+
+  		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"> </script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"> </script>
+		<script src="http://maps.google.com/maps/api/js?key=AIzaSyADHiS6zrSPrDbOwgi99maCMDp5oiJiBaM"></script>
+		<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/zingchart-angularjs/1.1.0/zingchart-angularjs.js"></script>
+		<script src="ng-map.min.js"></script>
+		<script src="app.module.js"></script>
+		<script src="vehicle-list/vehicle-list.controller.js"> </script>
+		<script src="vehicle-list/vehicle-list-critical-alerts.controller.js"> </script>
+		<script src="vehicle-list/vehicle.service.js"></script>
+		<script src="alert-list/alert-list.controller.js"></script>
+		<script src="alert-list/alert.service.js"></script>	
+		<script src="reading-list/reading-list.controller.js"></script>
+		<script src="reading-list/reading.service.js"></script>
+	</body>
+</html>
